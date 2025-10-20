@@ -17,24 +17,19 @@
   })
 
   cw1.addEventListener("click", function () {
-    // show loading text immediately
-    answer.textContent = 'Loading...'
-    // Fetch all posts and render as readable HTML list
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    // show processing text immediately
+    answer.textContent = 'Processing...'
+    // Create a new post via POST and show returned id
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify({ title: 'Nowy post', body: 'Treść nowego posta', userId: 1 })
+    })
       .then(response => response.json())
-      .then(posts => {
-        const parts = ['<ul style="list-style:none;padding:0;margin:0">']
-        posts.forEach(p => {
-          parts.push(
-            '<li style="border:1px solid #ddd;padding:8px;margin:8px 0;border-radius:4px">' +
-            '<h3 style="margin:0 0 6px 0">' + p.title + ' <small style="color:#666">#' + p.id + '</small></h3>' +
-            '<p style="margin:0 0 6px 0">' + p.body + '</p>' +
-            '<div style="font-size:12px;color:#444">User: ' + p.userId + '</div>' +
-            '</li>'
-          )
-        })
-        parts.push('</ul>')
-        answer.innerHTML = parts.join('')
+      .then(data => {
+        answer.textContent = 'Dodano nowy post o ID = ' + data.id
       })
   })
 
