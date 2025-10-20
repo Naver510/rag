@@ -34,6 +34,7 @@
   })
 
   cw2.addEventListener("click", function () {
+    alert('Loading')
     // show loading text
     answer.textContent = 'Loading...'
     // Fetch posts and display styled cards
