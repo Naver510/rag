@@ -17,6 +17,8 @@
   })
 
   cw1.addEventListener("click", function () {
+    // show loading text immediately
+    answer.textContent = 'Loading...'
     // Fetch all posts and render as readable HTML list
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
