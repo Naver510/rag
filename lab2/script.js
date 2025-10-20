@@ -6,6 +6,8 @@
   const answer = document.getElementById('answer')
 
   example.addEventListener("click", function () {
+    // show loading text immediately
+    answer.textContent = 'Loading...'
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(array => {
